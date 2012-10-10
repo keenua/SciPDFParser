@@ -59,7 +59,7 @@ public class PDF {
 			
 			List<Block> blocks = parser.processContent(i, new TextListener()).getBlocks(size);
 			
-			pages.add(new Page(blocks));
+			pages.add(new Page(blocks, size));
 		}
 		
 		GuessTitle();

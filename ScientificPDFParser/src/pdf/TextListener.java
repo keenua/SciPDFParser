@@ -128,6 +128,8 @@ public class TextListener implements RenderListener {
 			
 			if (b.text.trim().isEmpty()) continue;
 			
+			b.rectangle.y = pageSize.getHeight() - b.rectangle.y - b.rectangle.height;
+			
 			result.add(b);
 		}
 		

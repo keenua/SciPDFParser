@@ -19,7 +19,7 @@ public class Block {
 		return bold || font.getPostscriptFontName().toLowerCase().contains("-bold");
 	}
 	
-	public boolean isUpperCase() throws Exception {
+	public boolean isUpperCase() {
 		for (char c: text.toCharArray()) 
 			if (Character.isAlphabetic(c) && !Character.isUpperCase(c)) {
 				return false;
@@ -38,8 +38,7 @@ public class Block {
 	
 	@Override
 	public String toString() {
-	
-		try {
+		
 			StringBuilder builder = new StringBuilder();
 			builder.append("(" + rectangle.x + ", " + rectangle.y + ") width " + rectangle.width + " height " + rectangle.height + "\n");
 			builder.append("Font: " + fontSize);
@@ -50,9 +49,6 @@ public class Block {
 			builder.append("\n" + text + "\n");
 	
 			return builder.toString();
-		} catch (Exception e) { 
-			return "ERROR";
-		}
 	}
 	
 	Rectangle2D.Float union(Rectangle2D.Float r1, Rectangle2D.Float r2) {
@@ -60,7 +56,7 @@ public class Block {
 		
 		res.x = Math.min(r1.x, r2.x);
 		res.y = Math.min(r1.y, r2.y);
-		res.width = (r1.x > r2.x) ? r1.x - r2.x + r1.width : r2.x - r1.x + r2.width;
+		res.width = (r1.x > r2.x) ? Math.max(r1.x - r2.x + r1.width, r2.width) : Math.max(r2.x - r1.x + r2.width, r1.width);
 		res.height = (r1.y > r2.y) ? r1.y - r2.y + r1.height : r2.y - r1.y + r2.height;
 		
 		return res;

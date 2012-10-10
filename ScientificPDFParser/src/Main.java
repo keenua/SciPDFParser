@@ -1,5 +1,6 @@
 import pdf.Block;
 import pdf.PDF;
+import visualization.Visualizer;
 
 public class Main {
 
@@ -31,6 +32,8 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 		// OpenAllPdfs(7);
-		PrintEachBlock(1);
+		//PrintEachBlock(1);
+		Visualizer visualizer = new Visualizer();
+		visualizer.visualize(new PDF(defaultDir + "3.pdf"), "D:\\Temp\\PDF", 4);
 	}
 }
